@@ -177,7 +177,10 @@ function createTree(text: string): BbNode {
  * @param text string with bbcode tags
  * @returns the input text with all bbcode tags closed
  */
-export function closeBB(text: string): string {
+export function closeBB(text: string | undefined): string {
+	if (text === undefined) {
+        return ""
+    }
 	const openCount = Array.from(text.matchAll(/\[\w+(=(\/?[^\]\/]+)+)?\]/g)).length
 	const closeCount = Array.from(text.matchAll(/\[\/\w*\]/g)).length
 	if (openCount == closeCount)
